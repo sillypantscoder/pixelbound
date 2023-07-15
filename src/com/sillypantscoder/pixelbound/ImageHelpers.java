@@ -1,9 +1,15 @@
 package com.sillypantscoder.pixelbound;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.FontMetrics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class ImageHelpers {
 	public static Surface renderText(int size, String text, Color color) {
@@ -24,5 +30,15 @@ public class ImageHelpers {
 		}
 		// Finish
 		return ret;
+	}
+	public static Surface loadImage(String filename) throws IOException {
+		// Get the file
+		File f = AssetLoader.getResource(filename);
+		BufferedImage img = ImageIO.read(f);
+		return new Surface(img);
+	}
+	public static void setWindowIcon(Surface icon, RepaintingPanel panel) {
+		ImageIcon img = new ImageIcon(icon.img);
+		RepaintingPanel.frame.setIconImage(img.getImage());
 	}
 }

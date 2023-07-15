@@ -56,8 +56,8 @@ public abstract class RepaintingPanel extends JPanel {
 	*/
 	public void run() {
 		//SwingUtilities.invokeLater(() -> {
-			frame = new JFrame("Java Graphics");
-			frame.setSize(500, 500);
+			frame = new JFrame("pixelbound");
+			frame.setSize(512, 512);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.getContentPane().add(this, BorderLayout.CENTER);
 			frame.setVisible(true);
