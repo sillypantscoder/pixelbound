@@ -1,9 +1,13 @@
 package com.sillypantscoder.pixelbound;
 
-import java.awt.image.BufferedImage;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.BasicStroke;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Surface {
 	public BufferedImage img;
@@ -12,7 +16,7 @@ public class Surface {
 		this.fill(color);
 	}
 	public Surface(BufferedImage image) {
-		img = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		img = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = img.createGraphics();
 		g2d.drawImage(image, 0, 0, new DummyImageObserver());
 		g2d.dispose();
@@ -52,5 +56,15 @@ public class Surface {
 		g2d.setStroke(bs);
 		g2d.drawLine(x1, y1, x2, y2);
 		g2d.dispose();
+	}
+	public void drawRect(Color color, int x, int y, int width, int height) {
+		Graphics2D g2d = img.createGraphics();
+		g2d.setColor(Color.BLACK);
+		g2d.fillRect(x, y, width, height);
+		g2d.dispose();
+	}
+	public void writeToFile(String filename) throws IOException {
+		File outputfile = new File(filename);
+		ImageIO.write(img, "jpg", outputfile);
 	}
 }
